@@ -1,0 +1,19 @@
+import simplegui
+
+n = 217
+ns = []
+def update():
+    global n
+    print n
+    ns.append(n)
+    if n == 1:
+        timer.stop()
+        print max(ns)
+    elif n % 2 == 0:
+        n = n // 2
+    else:
+        n = n *3 + 1 
+timer = simplegui.create_timer(1, update)
+
+
+timer.start()
