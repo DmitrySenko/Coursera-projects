@@ -1,0 +1,63 @@
+import simplegui
+
+
+integer = 0
+stops = 0
+success = 0
+successful_stops = 0
+
+
+def format(x):
+    a = str(x // 600)
+    b = str((x % 600) // 100) 
+    c = str((x // 10)% 10)
+    d = str(x % 10)
+    return a + ':' + b + c + '.' + d
+     
+    
+def start():
+    timer.start()
+    
+
+def stop():
+    global stops
+    global success
+    global successful_stops
+    if timer.is_running():
+        stops += 1
+    if format(integer)[-1] == "0":
+        success += 1
+    successful_stops = str(success) + "/" + str(stops)
+        
+    timer.stop()
+
+    
+def reset():
+    global integer
+    global stops
+    global success
+    global successful_stops
+    timer.stop()
+    integer = 0
+    stops = 0
+    success = 0
+    successful_stops = 0  
+
+    
+def timer_handler():
+    global integer 
+    integer += 1
+
+
+def draw_handler(canvas):
+    canvas.draw_text(format(integer), [20, 20], 24, "Red")
+    canvas.draw_text(str(successful_stops), [160, 20], 24, "Red")
+
+    
+frame = simplegui.create_frame("Stopwatch: The Game", 200, 200)
+frame.set_draw_handler(draw_handler)
+timer = simplegui.create_timer(100, timer_handler)
+frame.add_button("Start", start)
+frame.add_button("Stop", stop)
+frame.add_button("Reset", reset)
+frame.start()
