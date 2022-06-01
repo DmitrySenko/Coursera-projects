@@ -11,3 +11,6 @@ Mini-project #2 - Guess the Number! - Обязательный проект 3-й
 	URL: https://py2.codeskulptor.org/#user49_8Sq2t257QgwIIXy.py
 	GitHub: https://github.com/DmitrySenko/Coursera-projects/blob/main/Mini-project%20%232%20-%20Guess%20the%20Number!.txt
 
+Mini-project #3 - Stopwatch: The Game - проект 4-й недели.
+	URL: https://py2.codeskulptor.org/#user49_kHWoBTv0E5_0.py
+	
