@@ -1,6 +1,6 @@
 import simplegui
 import random
-
+import math
 
 WIDTH = 600
 HEIGHT = 400       
@@ -11,7 +11,7 @@ HALF_PAD_WIDTH = PAD_WIDTH / 2
 HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 LEFT = False
 RIGHT = True
-direction = LEFT
+direction = RIGHT
 
 
 def spawn_ball(direction):
@@ -20,9 +20,9 @@ def spawn_ball(direction):
     ball_vel = [0, 0]
     ball_vel[0], ball_vel[1] = random.randrange(60, 180) / 20, random.randrange(120, 140) / 20
     if direction == RIGHT:
-        ball_vel[0], ball_vel[1] = ball_vel[0], - ball_vel[1] 
+        ball_vel[0], ball_vel[1] = - abs(ball_vel[0]), - abs(ball_vel[1]) 
     elif direction == LEFT:
-        ball_vel[0], ball_vel[1] = - ball_vel[0], - ball_vel[1]
+        ball_vel[0], ball_vel[1] =  abs(ball_vel[0]), - abs(ball_vel[1])
         
     
 def new_game():
@@ -48,18 +48,24 @@ def draw(canvas):
     canvas.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, "White")  
     if ball_pos[1] <=  BALL_RADIUS or ball_pos[1] >= HEIGHT - BALL_RADIUS:
         ball_vel[1] = - ball_vel[1]
-    elif ball_pos[0] - BALL_RADIUS <= PAD_WIDTH and paddle1_pos[1][1] - BALL_RADIUS <= ball_pos[1] <= paddle1_pos[2][1] + BALL_RADIUS:
+    
+    
+    elif ball_pos[0] <= 0 + BALL_RADIUS + PAD_WIDTH and (
+        paddle1_pos[1][1] - BALL_RADIUS <= ball_pos[1] <= paddle1_pos[2][1] + BALL_RADIUS):
         ball_vel[0], ball_vel[1] = ball_vel[0] * 1.1, ball_vel[1] * 1.1
         ball_vel[0], ball_vel[1] = - ball_vel[0], - ball_vel[0]
-    elif ball_pos[0] + BALL_RADIUS >= WIDTH - PAD_WIDTH and paddle2_pos[1][1] + BALL_RADIUS <= ball_pos[1] <= paddle2_pos[2][1] + ball_pos[1]:
-        ball_vel[0], ball_vel[1] = ball_vel[0] * 1.1, ball_vel[1] * 1.1
-        ball_vel[0], ball_vel[1] = - ball_vel[0], - ball_vel[0]
-    elif ball_pos[0] + BALL_RADIUS >= WIDTH - PAD_WIDTH and not paddle2_pos[1][1] + BALL_RADIUS <= ball_pos[1] <= paddle2_pos[2][1] + ball_pos[1]:
+    elif ball_pos[0] <= 0 + BALL_RADIUS + PAD_WIDTH and not (
+        paddle1_pos[1][1] + BALL_RADIUS <= ball_pos[1] <= paddle1_pos[2][1] + BALL_RADIUS):
         spawn_ball(LEFT)  
-        score1 += 1
-    elif ball_pos[0] <= PAD_WIDTH + BALL_RADIUS and not paddle1_pos[1][1] - BALL_RADIUS <= ball_pos[1] <= paddle1_pos[2][1] + BALL_RADIUS:
+        score1 += 1    
+    elif ball_pos[0] >= WIDTH - PAD_WIDTH - BALL_RADIUS and (
+        paddle2_pos[1][1] - BALL_RADIUS <= ball_pos[1] <= paddle2_pos[2][1] + BALL_RADIUS):
+        ball_vel[0], ball_vel[1] = ball_vel[0] * 1.1, ball_vel[1] * 1.1        
+        ball_vel[0], ball_vel[1] = - ball_vel[0], - ball_vel[0]     
+    elif ball_pos[0] >= WIDTH - PAD_WIDTH - BALL_RADIUS and not(
+        paddle2_pos[1][1] - BALL_RADIUS <= ball_pos[1] <= paddle2_pos[2][1] + BALL_RADIUS):
         spawn_ball(RIGHT)
-        score2 += 1
+        score2 += 1        
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
     if 0 - paddle1_vel <= paddle1_pos[0][1] and paddle1_pos[3][1] <= HEIGHT - paddle1_vel:
@@ -72,9 +78,9 @@ def draw(canvas):
         paddle2_pos[1][1] += paddle2_vel
         paddle2_pos[2][1] += paddle2_vel 
         paddle2_pos[3][1] += paddle2_vel
-    canvas.draw_circle([ball_pos[0], ball_pos[1]], BALL_RADIUS, 1, "White", "White")	
+    canvas.draw_circle([ball_pos[0], ball_pos[1]], BALL_RADIUS, 1, "White", "White")
     canvas.draw_polygon([(paddle1_pos[0]),(paddle1_pos[1]),
-                         (paddle1_pos[2]), (paddle1_pos[3])], 6, "white")
+                         (paddle1_pos[2]), (paddle1_pos[3])], 6, "white", "white")
     canvas.draw_polygon([(paddle2_pos[0]),(paddle2_pos[1]),
                          (paddle2_pos[2]), (paddle2_pos[3])], 6, "white")
     canvas.draw_text("Score 1 is " + str(score1), [100, 60], 24, "red")
