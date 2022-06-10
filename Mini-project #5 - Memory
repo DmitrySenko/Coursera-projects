@@ -1,0 +1,69 @@
+import simplegui
+import random
+
+
+def new_game():
+    global memory, x_pos, exposed, state, counter
+    state = 0
+    memory = lst_creator()
+    memory += memory
+    random.shuffle(memory)
+    exposed = [False] * 16
+    x_pos = 0
+    counter = 0
+
+    
+def lst_creator():
+    number = 0
+    lst = []
+    while len(lst) < 8:
+        number = random.randrange(0, 8)
+        if number not in lst:
+            lst.append(number)
+    return lst
+
+
+def mouseclick(pos):
+    global x_pos, exposed, state, x_pos1, x_pos2, counter
+    x_pos = pos[0] // 50
+    if not exposed[x_pos]:
+        if state == 0:
+            x_pos1 = x_pos
+            exposed[x_pos1] = True
+            state = 1
+        elif state == 1:
+            x_pos2 = x_pos
+            exposed[x_pos2] = True
+            if memory[x_pos1] == memory[x_pos2]:
+                state = 0
+            else:
+                state = 2
+            counter += 1
+        else:
+            exposed[x_pos1], exposed[x_pos2] = False, False
+            x_pos1 = x_pos
+            exposed[x_pos1] = True
+            state = 1
+
+     
+def draw(canvas):
+    for i in range(16):
+        if exposed[i] == True:
+            x_number = i * 50 + 20
+            canvas.draw_polygon([[i * 50, 0], [i * 50 + 50, 0], [i * 50 + 50, 100], [i * 50, 100]], 
+                                1, "Black", "White")
+            canvas.draw_text(str(memory[i]), [x_number, 70], 50, "Green")
+        else:
+            canvas.draw_polygon([[i * 50, 0], [i * 50 + 50, 0], [i * 50 + 50, 100], [i * 50, 100]], 
+                                1, "Black", "Green")
+    text = str("Turns = " + str(counter))
+    label.set_text(text)
+  
+
+frame = simplegui.create_frame("Memory", 800, 100)
+frame.add_button("Reset", new_game)
+label = frame.add_label("Turns = 0")
+frame.set_mouseclick_handler(mouseclick)
+frame.set_draw_handler(draw)
+new_game()
+frame.start()
