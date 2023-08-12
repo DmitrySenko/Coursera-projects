@@ -14,3 +14,4 @@ Mini-project #2 - Guess the Number! - Обязательный проект 3-й
 Mini-project #3 - Stopwatch: The Game - проект 4-й недели.
 	URL: https://py2.codeskulptor.org/#user49_kHWoBTv0E5_0.py
 	
+	URL: https://py2.codeskulptor.org/#user50_ixNSCz60ZJdepqG_1.py
