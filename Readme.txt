@@ -15,3 +15,5 @@ Mini-project #3 - Stopwatch: The Game - обязательный проект 4-
 	URL: https://py2.codeskulptor.org/#user49_kHWoBTv0E5_0.py
 Mini-project #4 - Pong - обязательный проект 5-й недели. 
 	URL: https://py2.codeskulptor.org/#user50_ixNSCz60ZJdepqG_1.py
+
+	URL: https://py2.codeskulptor.org/#user50_WgZqzWxKMq70GYB_1.py
