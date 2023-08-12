@@ -15,8 +15,9 @@ Mini-project #3 - Stopwatch: The Game - обязательный проект 4-
 Mini-project #4 - Pong - обязательный проект 5-й недели. 
 	URL: https://py2.codeskulptor.org/#user50_ixNSCz60ZJdepqG_1.py
 
-Week 4 Practice Exercises for Timers (optional) - дополнительный проект 5-й недели
+Week 4 Practice Exercises for Timers (optional) - дополнительный проект 5-й недели.
 	URL: https://py2.codeskulptor.org/#user50_WgZqzWxKMq70GYB_1.py
 
-
+Week 4 test B - дополнительный проект 5-й недели.
 	URL: https://py2.codeskulptor.org/#user50_g4poEkdX9j4jUFo_1.py
+
