@@ -1,7 +1,7 @@
 Онлайн курс на Coursere
 Специализация: Fundamentals of Computing
 Курс 1: AN Introduction to Interactive Programming in Python (Part 1)
-
+Ссылки (URL) переводят в среду, где можно посмотреть, как работает соответствующий код
 Items:
 "Mini-project #1 - Rock-paper-scissor-lizard-Spock" - Обязательный проект 2-й недели. 
 	URL: https://py2.codeskulptor.org/#user49_0eThvw4gYP_0.py 
