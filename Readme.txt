@@ -21,3 +21,5 @@ Week 4 Practice Exercises for Timers (optional) - дополнительный �
 Week 4 test B - дополнительный проект 5-й недели.
 	URL: https://py2.codeskulptor.org/#user50_g4poEkdX9j4jUFo_1.py
 
+
+	URL: https://py2.codeskulptor.org/#user50_zCrV6IveNYaUQFw_1.py
